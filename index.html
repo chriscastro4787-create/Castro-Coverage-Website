@@ -162,6 +162,7 @@ select option{background:var(--ink-mid);color:var(--white)}
 .bc:hover{border-color:rgba(0,196,212,.35);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,196,212,.12)}
 .bc:hover::after{transform:scaleX(1)}
 .bc-hero{grid-column:1;grid-row:1/3;background:var(--ink);border-color:rgba(0,196,212,.18);display:flex;flex-direction:column;justify-content:space-between}
+.bc-wide{grid-column:2/4}
 .bc-hero:hover{border-color:rgba(0,196,212,.45)}
 .bico{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;background:rgba(0,196,212,.1);border:1px solid rgba(0,196,212,.2);color:var(--teal-d);transition:all .26s ease}
 .bc:hover .bico{background:var(--teal);color:var(--ink);border-color:var(--teal)}
@@ -335,13 +336,20 @@ footer{background:var(--ink);padding:56px 48px 26px}
 }
 @media(max-width:768px){
   .nav{padding:12px 20px}
-  .nav-links,.nav-phone{display:none}
+  .nav-links,.nav-phone,.btn-nav,.nav-right{display:none}
   .nav-burger{display:flex}
   .hero{padding:92px 22px 56px}
+  .hero-logo-wrap{width:min(280px,80vw);height:clamp(96px,35vw,148px)}
   .hero-display{font-size:clamp(3rem,13vw,4.5rem)}
+  .form-card{padding:24px 16px}
+  .form-grid{grid-template-columns:1fr}
   .sec,.carriers{padding:60px 22px}
   .bento{grid-template-columns:1fr}
   .bc-hero{grid-column:1}
+  .bento .bc{grid-column:1 !important}
+  .licensed-sec{padding:48px 22px 44px}
+  .lic-stats-col{flex-direction:column;gap:14px;align-items:flex-start}
+  .lic-stat{min-width:0;width:100%}
   .steps{grid-template-columns:1fr;gap:28px}
   .steps::before{display:none}
   .comparison{grid-template-columns:1fr}
@@ -371,9 +379,9 @@ footer{background:var(--ink);padding:56px 48px 26px}
     <span></span><span></span><span></span>
   </button>
   <div class="nav-right">
-    <a href="tel:+15614219421" class="nav-phone">
-      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
-      (561) 421-9421
+    <a href="https://cal.com/christopher-castro-giz5ap/30min" target="_blank" rel="noopener" class="nav-phone">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Schedule a Call
     </a>
     <a href="#quote-form" class="btn-nav">Book Free Consult</a>
   </div>
@@ -537,7 +545,7 @@ footer{background:var(--ink);padding:56px 48px 26px}
         <div class="btitle">Small Business</div>
         <p class="bdesc">Group health benefits designed for small teams and the self-employed. The right coverage helps you attract and retain the people worth keeping.</p>
       </div>
-      <div class="bc r d4" style="grid-column:2/4">
+      <div class="bc bc-wide r d4">
         <div class="bico"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
         <div class="btitle">Dental &amp; Vision</div>
         <p class="bdesc">Fill the gaps with supplemental dental and vision plans that keep you fully covered.</p>
@@ -574,13 +582,13 @@ footer{background:var(--ink);padding:56px 48px 26px}
 </div>
 
 <!-- MULTI-STATE LICENSED TEAM + STATS -->
-<section class="licensed-sec r">
-  <div class="lic-hd">
+<section class="licensed-sec">
+  <div class="lic-hd r">
     <div class="lic-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
     <div class="lic-title">Multi-State Licensed Team</div>
     <p class="lic-sub">Active licenses across 31+ states and growing.</p>
   </div>
-  <div class="lic-stats-col">
+  <div class="lic-stats-col r d1">
       <div class="lic-stat">
         <div class="lic-stat-v" data-target="500" data-suffix="+">500+</div>
         <div class="lic-stat-l">Families &amp; individuals<br>protected</div>
@@ -876,7 +884,7 @@ window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 50)
 // Reveal on scroll
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-}, {threshold: 0.1});
+}, {threshold: 0.05, rootMargin: '0px 0px -30px 0px'});
 document.querySelectorAll('.r').forEach(el => io.observe(el));
 
 // Counter animation
