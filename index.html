@@ -917,51 +917,42 @@ footer{background:var(--ink);padding:56px 48px 26px}
 
 <script>
 // ── QUOTE FORM ──────────────────────────────
-// To activate: sign up free at formspree.io → create a form → paste your form ID below
-const FORMSPREE_ID = 'xeenddvp'; // ← replace with your Formspree form ID
-
 const quoteForm = document.getElementById('quote-form-el');
 if (quoteForm) {
   quoteForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn   = document.getElementById('form-btn');
-    const err   = document.getElementById('form-error');
-    const span  = btn.querySelector('span');
+    const btn  = document.getElementById('form-btn');
+    const err  = document.getElementById('form-error');
+    const span = btn.querySelector('span');
 
-    // Basic validation
     const coverage = document.getElementById('coverage').value;
     if (!coverage) { err.textContent = 'Please select a coverage type.'; err.style.display = 'block'; return; }
     err.style.display = 'none';
 
-    // Loading state
     btn.disabled = true;
     span.textContent = 'Sending…';
 
-    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
-      // Formspree not yet configured — fall back to mailto
-      const fname    = document.getElementById('fname').value;
-      const lname    = document.getElementById('lname').value;
-      const phone    = document.getElementById('phone').value;
-      const email    = document.getElementById('email').value;
-      const subject  = encodeURIComponent(`Quote Request — ${fname} ${lname}`);
-      const body     = encodeURIComponent(`Name: ${fname} ${lname}\nPhone: ${phone}\nEmail: ${email}\nCoverage: ${coverage}`);
-      window.location.href = `mailto:christophercastrohealth@gmail.com?subject=${subject}&body=${body}`;
-      showFormSuccess();
-      return;
-    }
+    const fname = document.getElementById('fname').value;
+    const lname = document.getElementById('lname').value;
+
+    const data = new FormData(quoteForm);
+    data.append('access_key', 'c5a2e845-07ab-4d58-9d49-64e957d7347b');
+    data.append('subject', `New Quote Request — ${fname} ${lname}`);
+    data.append('from_name', 'Castro Coverage Website');
 
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res  = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: new FormData(quoteForm),
+        body: data,
         headers: { Accept: 'application/json' }
       });
-      if (res.ok) {
-        showFormSuccess();
+      const json = await res.json();
+      if (json.success) {
+        window.location.href = '/thank-you.html';
       } else {
-        throw new Error();
+        throw new Error(json.message || 'Submission failed');
       }
-    } catch {
+    } catch (e) {
       err.textContent = 'Something went wrong. Please email us directly at christophercastrohealth@gmail.com';
       err.style.display = 'block';
       btn.disabled = false;

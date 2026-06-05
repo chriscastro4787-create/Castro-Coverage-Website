@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Received – Castro Coverage</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="Brand Assets/Icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,700;12..96,800;12..96,900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C4D4;--teal-d:#0891B2;--teal-dd:#0E7490;
+  --ink:#060F1C;--ink-mid:#0C1E38;--white:#FFFFFF;
+  --f:'Bricolage Grotesque',sans-serif;
+}
+html,body{height:100%;font-family:var(--f);background:var(--ink);color:var(--white);overflow-x:hidden}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,196,212,.5)}60%{box-shadow:0 0 0 14px rgba(0,196,212,0)}}
+@keyframes drift{0%,100%{transform:translate(0,0)}40%{transform:translate(20px,-14px)}70%{transform:translate(-14px,10px)}}
+
+.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
+.b1{width:600px;height:500px;top:-100px;right:-120px;background:radial-gradient(circle,rgba(0,196,212,.14) 0%,transparent 70%);animation:drift 16s ease-in-out infinite}
+.b2{width:400px;height:400px;bottom:-60px;left:-80px;background:radial-gradient(circle,rgba(8,145,178,.09) 0%,transparent 70%);animation:drift 20s ease-in-out infinite reverse}
+.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,196,212,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,196,212,.03) 1px,transparent 1px);background-size:56px 56px}
+.grid-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 90% at 50% 50%,transparent 35%,var(--ink) 100%)}
+
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;position:relative;z-index:1;text-align:center}
+
+.logo-wrap{width:64px;height:64px;margin:0 auto 32px;animation:fade-up .5s ease both}
+.logo-wrap img{width:100%;height:auto}
+
+.check-wrap{
+  width:72px;height:72px;margin:0 auto 28px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-d));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  animation:pulse 2.4s infinite, fade-up .5s .1s ease both;
+}
+
+.heading{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px;animation:fade-up .5s .15s ease both}
+.heading span{color:var(--teal)}
+
+.sub{font-size:1rem;color:rgba(255,255,255,.52);line-height:1.75;max-width:480px;margin:0 auto 36px;animation:fade-up .5s .2s ease both}
+
+.steps-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;animation:fade-up .5s .25s ease both}
+.step-chip{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1px solid rgba(0,196,212,.2);border-radius:100px;padding:8px 16px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.65)}
+.step-chip svg{color:var(--teal);flex-shrink:0}
+
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fade-up .5s .3s ease both}
+.btn-home{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:var(--ink);font-family:var(--f);font-size:.9rem;font-weight:800;border-radius:10px;text-decoration:none;transition:opacity .2s,transform .2s;box-shadow:0 4px 20px rgba(0,196,212,.3)}
+.btn-home:hover{opacity:.88;transform:translateY(-1px)}
+.btn-call{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;color:rgba(255,255,255,.7);font-family:var(--f);font-size:.9rem;font-weight:700;border:1.5px solid rgba(255,255,255,.2);border-radius:10px;text-decoration:none;transition:all .2s}
+.btn-call:hover{border-color:var(--teal);color:var(--teal)}
+
+.footer-note{margin-top:48px;font-size:.75rem;color:rgba(255,255,255,.22);animation:fade-up .5s .35s ease both}
+
+@media(max-width:480px){
+  .steps-row{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="grid-bg"></div>
+
+<main class="page">
+
+  <div class="logo-wrap">
+    <img src="Brand Assets/Icon.png" alt="Castro Coverage">
+  </div>
+
+  <div class="check-wrap">
+    <svg width="32" height="32" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+  </div>
+
+  <h1 class="heading">You're all set,<br><span>we'll be in touch soon.</span></h1>
+
+  <p class="sub">Your quote request was received. A licensed advisor will reach out within 24 hours to walk you through your best options — no pressure, no jargon.</p>
+
+  <div class="steps-row">
+    <div class="step-chip">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Response within 24 hours
+    </div>
+    <div class="step-chip">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Zero cost, zero pressure
+    </div>
+    <div class="step-chip">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+      Real person, every time
+    </div>
+  </div>
+
+  <div class="btns">
+    <a href="/" class="btn-home">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Back to Home
+    </a>
+    <a href="https://cal.com/christopher-castro-giz5ap/30min" target="_blank" rel="noopener" class="btn-call">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Schedule a Call Instead
+    </a>
+  </div>
+
+  <p class="footer-note">© 2026 Castro Coverage · NPN: 22109263 · Licensed in FL & 31+ States</p>
+
+</main>
+</body>
+</html>
