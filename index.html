@@ -935,22 +935,23 @@ if (quoteForm) {
     const fname = document.getElementById('fname').value;
     const lname = document.getElementById('lname').value;
 
-    const data = new FormData(quoteForm);
-    data.append('access_key', 'c5a2e845-07ab-4d58-9d49-64e957d7347b');
-    data.append('subject', `New Quote Request — ${fname} ${lname}`);
-    data.append('from_name', 'Castro Coverage Website');
-
     try {
-      const res  = await fetch('https://api.web3forms.com/submit', {
+      const res  = await fetch('/api/submit', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' }
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          first_name: fname,
+          last_name:  lname,
+          phone:      document.getElementById('phone').value,
+          email:      document.getElementById('email').value,
+          coverage_type: coverage,
+        }),
       });
       const json = await res.json();
       if (json.success) {
         window.location.href = '/thank-you.html';
       } else {
-        throw new Error(json.message || 'Submission failed');
+        throw new Error(json.error || 'Submission failed');
       }
     } catch (e) {
       err.textContent = 'Something went wrong. Please email us directly at christophercastrohealth@gmail.com';
