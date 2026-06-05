@@ -72,9 +72,7 @@ const html = `
   </div>
   <div class="body">
     <div style="text-align:center;margin-bottom:24px">
-      <div style="width:56px;height:56px;background:linear-gradient(135deg,#00C4D4,#0891B2);border-radius:50%;display:inline-flex;align-items:center;justify-content:center">
-        <span style="color:white;font-size:24px">✓</span>
-      </div>
+      <img src="https://castrocoverage.com/Brand%20Assets/Icon.png" alt="Castro Coverage" width="72" height="72" style="display:inline-block">
     </div>
     <div class="heading">We received your request, ${firstName}.</div>
     <p class="sub">
