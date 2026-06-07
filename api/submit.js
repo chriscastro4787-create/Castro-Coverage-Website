@@ -1,5 +1,32 @@
 import nodemailer from 'nodemailer';
 
+// ── Rate limiting (per IP, in-memory) ──────────────
+const rateLimitMap = new Map();
+const RATE_LIMIT    = 5;   // max submissions
+const RATE_WINDOW   = 60 * 60 * 1000; // per hour
+
+function isRateLimited(ip) {
+  const now  = Date.now();
+  const entry = rateLimitMap.get(ip) || { count: 0, start: now };
+  if (now - entry.start > RATE_WINDOW) { entry.count = 0; entry.start = now; }
+  entry.count++;
+  rateLimitMap.set(ip, entry);
+  return entry.count > RATE_LIMIT;
+}
+
+// ── HTML escaping to prevent injection in emails ───
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+// ── Email format validation ────────────────────────
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -9,6 +36,7 @@ const transporter = nodemailer.createTransport({
 });
 
 function notificationHtml({ first_name, last_name, phone, email, coverage_type }) {
+  [first_name, last_name, phone, email, coverage_type] = [first_name, last_name, phone, email, coverage_type].map(esc);
   return `
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <style>
@@ -45,6 +73,7 @@ function notificationHtml({ first_name, last_name, phone, email, coverage_type }
 }
 
 function confirmationHtml({ first_name }) {
+  first_name = esc(first_name);
   return `
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <style>
@@ -105,10 +134,32 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Rate limit by IP
+  const ip = req.headers['x-forwarded-for']?.split(',')[0] ?? 'unknown';
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+  }
+
+  // Honeypot — bots fill this, humans don't see it
+  if (req.body.website) {
+    return res.status(200).json({ success: true }); // silently discard
+  }
+
   const { first_name, last_name, phone, email, coverage_type } = req.body;
 
+  // Presence check
   if (!first_name || !last_name || !email || !coverage_type) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Length limits
+  if ([first_name, last_name, phone, email, coverage_type].some(v => String(v).length > 200)) {
+    return res.status(400).json({ error: 'Input too long' });
+  }
+
+  // Email format
+  if (!EMAIL_RE.test(email)) {
+    return res.status(400).json({ error: 'Invalid email address' });
   }
 
   try {
