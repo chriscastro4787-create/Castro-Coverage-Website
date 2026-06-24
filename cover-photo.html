@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castro Coverage – Facebook Cover Photo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,700;12..96,900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* 2× retina: render at 1640×624 → export/screenshot at 820×312 */
+  body {
+    width: 1640px;
+    height: 624px;
+    overflow: hidden;
+    background: #060F1C;
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  .cover {
+    position: relative;
+    width: 1640px;
+    height: 624px;
+    background: linear-gradient(120deg, #060F1C 0%, #0C1E38 60%, #0a2540 100%);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* ── Background textures ── */
+  .dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0,196,212,0.13) 1.5px, transparent 1.5px);
+    background-size: 36px 36px;
+    opacity: 0.55;
+  }
+
+  /* Large soft teal glow — right side */
+  .glow-r {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,196,212,0.14) 0%, transparent 65%);
+  }
+
+  /* Subtle glow — left side */
+  .glow-l {
+    position: absolute;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,196,212,0.06) 0%, transparent 70%);
+  }
+
+  /* Decorative arcs */
+  .arc {
+    position: absolute;
+    right: -100px;
+    top: -120px;
+    width: 680px;
+    height: 680px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,196,212,0.12);
+  }
+  .arc-2 {
+    position: absolute;
+    right: 40px;
+    top: -40px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,196,212,0.08);
+  }
+
+  /* Top teal accent line */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, transparent 0%, #00C4D4 30%, #00C4D4 70%, transparent 100%);
+  }
+
+  /* Bottom strip */
+  .bottom-strip {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 52px;
+    background: rgba(0,196,212,0.07);
+    border-top: 1px solid rgba(0,196,212,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    z-index: 5;
+  }
+
+  .strip-item {
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+  }
+
+  .strip-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #00C4D4;
+    opacity: 0.45;
+    flex-shrink: 0;
+  }
+
+  /* Vertical divider */
+  .v-divider {
+    position: absolute;
+    right: 520px;
+    top: 80px;
+    bottom: 68px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,196,212,0.28) 25%, rgba(0,196,212,0.28) 75%, transparent);
+    z-index: 4;
+  }
+
+  /* ── Left content ── */
+  .left {
+    position: relative;
+    z-index: 3;
+    padding-left: 120px;
+    flex: 1;
+  }
+
+  .eyebrow {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #00C4D4;
+    margin-bottom: 22px;
+  }
+
+  .brand-name {
+    font-size: 112px;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  .brand-name .accent {
+    color: #00C4D4;
+  }
+
+  .divider {
+    width: 72px;
+    height: 4px;
+    background: #00C4D4;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .tagline {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── Right content ── */
+  .right {
+    position: relative;
+    z-index: 3;
+    width: 420px;
+    padding-right: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .shield-wrap {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,196,212,0.30);
+    background: rgba(0,196,212,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .shield-wrap svg {
+    width: 80px;
+    height: 80px;
+  }
+
+  .info {
+    text-align: center;
+  }
+
+  .info-name {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .info-title {
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 18px;
+  }
+
+  .info-row {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.50);
+    letter-spacing: 0.5px;
+    line-height: 1.95;
+  }
+
+  .info-row a {
+    color: #00C4D4;
+    text-decoration: none;
+  }
+
+  /* free quote badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #00C4D4;
+    color: #060F1C;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: 100px;
+  }
+</style>
+</head>
+<body>
+<div class="cover">
+
+  <!-- Backgrounds -->
+  <div class="dots"></div>
+  <div class="glow-l"></div>
+  <div class="glow-r"></div>
+  <div class="arc"></div>
+  <div class="arc-2"></div>
+  <div class="top-bar"></div>
+  <div class="v-divider"></div>
+
+  <!-- Left: Brand -->
+  <div class="left">
+    <div class="eyebrow">Licensed Health Insurance Advisor &nbsp;·&nbsp; FL &amp; 31+ States</div>
+    <div class="brand-name">Castro<br><span class="accent">Coverage</span></div>
+    <div class="divider"></div>
+    <div class="tagline">Coverage, Simplified.</div>
+  </div>
+
+  <!-- Right: Advisor + CTA -->
+  <div class="right">
+    <div class="shield-wrap">
+      <!-- Shield + checkmark icon -->
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 6L10 18v22c0 17.5 13 30.5 30 35 17-4.5 30-17.5 30-35V18L40 6z"
+              fill="rgba(0,196,212,0.15)" stroke="#00C4D4" stroke-width="2.5"/>
+        <path d="M27 40l9 9 17-17"
+              stroke="#00C4D4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="info">
+      <div class="info-name">Christopher Castro</div>
+      <div class="info-title">Health Insurance Advisor</div>
+      <div class="info-row">
+        castrocoverage.com<br>
+        (561) 421-9421<br>
+        NPN: 22109263
+      </div>
+    </div>
+
+    <div class="badge">
+      &#10003;&nbsp; Free Quote
+    </div>
+  </div>
+
+  <!-- Bottom tag strip -->
+  <div class="bottom-strip">
+    <span class="strip-item">Individual &amp; Family</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">Self-Employed</span>
+    <span class="strip-dot"></span>
+    <span class="strip-item">Small Business</span>
+  </div>
+
+</div>
+</body>
+</html>
