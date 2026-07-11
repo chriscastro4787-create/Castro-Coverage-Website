@@ -33,6 +33,11 @@ const transporter = nodemailer.createTransport({
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_PASS,
   },
+  pool: true,
+  maxConnections: 3,
+  maxMessages: 100,
+  rateDelta: 1000,
+  rateLimit: 3,
 });
 
 function notificationHtml({ first_name, last_name, phone, email, coverage_type }) {
@@ -65,7 +70,7 @@ function notificationHtml({ first_name, last_name, phone, email, coverage_type }
       <tr><td>Phone</td><td><a href="tel:${phone}">${phone}</a></td></tr>
       <tr><td>Coverage Type</td><td>${coverage_type}</td></tr>
     </table>
-    <a href="https://cal.com/christopher-castro-giz5ap/30min" class="btn">Schedule a Call with This Lead →</a>
+    <a href="https://calendar.app.google/bpAhv9YdZV2qYySA9" class="btn">Schedule a Call with This Lead →</a>
   </div>
   <div class="ftr">Castro Coverage · NPN: 22109263 · castrocoverage.com</div>
 </div>
@@ -90,8 +95,6 @@ function confirmationHtml({ first_name }) {
   .info-box p{margin:0;font-size:14px;color:#334155;line-height:1.7}
   .btn{display:block;width:fit-content;margin:0 auto 32px;background:linear-gradient(135deg,#00C4D4,#0891B2);color:#060F1C;text-decoration:none;font-weight:800;font-size:15px;padding:14px 32px;border-radius:10px}
   hr{border:none;border-top:1px solid #E4EDF2;margin:0 0 28px}
-  .contact{text-align:center;font-size:13px;color:#94A3B8;line-height:1.8}
-  .contact a{color:#0891B2;text-decoration:none}
   .ftr{background:#060F1C;padding:20px 40px;text-align:center}
   .ftr p{margin:0;font-size:11px;color:rgba(255,255,255,.25);line-height:1.7}
 </style>
@@ -111,15 +114,24 @@ function confirmationHtml({ first_name }) {
       <p><strong>What happens next:</strong><br>
       We'll review your coverage needs and reach out personally to discuss the private health plans, ACA marketplace options, or group coverage that best fits your situation and budget. Our advisory service is completely free to you.</p>
     </div>
-    <a href="https://cal.com/christopher-castro-giz5ap/30min" class="btn">Schedule a Call Now →</a>
+    <a href="https://calendar.app.google/bpAhv9YdZV2qYySA9" class="btn">Schedule a Call Now →</a>
     <hr>
-    <div class="contact">
-      <strong style="color:#334155">Christopher Castro</strong><br>
-      Licensed Health Insurance Broker · NPN: 22109263<br>
-      <a href="tel:+15614219421">(561) 421-9421</a> &nbsp;·&nbsp;
-      <a href="mailto:christophercastrohealth@gmail.com">christophercastrohealth@gmail.com</a><br>
-      <a href="https://castrocoverage.com">castrocoverage.com</a>
-    </div>
+    <table cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;margin:0 auto">
+      <tr>
+        <td style="vertical-align:middle;padding-right:14px">
+          <img src="https://castrocoverage.com/Brand%20Assets/Icon.png" alt="Castro Coverage" width="46" height="46" style="display:block;border-radius:8px">
+        </td>
+        <td style="vertical-align:middle;border-left:2px solid #00C4D4;padding-left:14px;text-align:left">
+          <div style="font-weight:700;color:#060F1C;font-size:14px">Christopher Castro</div>
+          <div style="color:#64748B;font-size:12.5px;margin-top:1px">State Advisor · Castro Coverage</div>
+          <div style="color:#64748B;font-size:12.5px;margin-top:4px">
+            <a href="tel:+19542280869" style="color:#0891B2;text-decoration:none">(954) 228-0869</a>
+            &nbsp;·&nbsp;
+            <a href="mailto:christopherhealth@castrocoverage.com" style="color:#0891B2;text-decoration:none">christopherhealth@castrocoverage.com</a>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
   <div class="ftr">
     <p>© 2026 Castro Coverage · NPN: 22109263 · Licensed in FL & 31+ States<br>

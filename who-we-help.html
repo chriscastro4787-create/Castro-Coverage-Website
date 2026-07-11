@@ -153,6 +153,29 @@ img{max-width:100%;height:auto;display:block}
 .aud-cta svg{transition:transform .2s}
 .aud-cta:hover svg{transform:translateX(3px)}
 
+/* ── BLOG GRID ── */
+.blog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.blog-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px;display:flex;flex-direction:column;text-decoration:none;position:relative;overflow:hidden;transition:all .24s ease}
+.blog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal-d));transform:scaleX(0);transform-origin:left;transition:transform .24s ease}
+.blog-card:hover{border-color:rgba(0,196,212,.3);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,196,212,.1)}
+.blog-card:hover::before{transform:scaleX(1)}
+.blog-tag{display:inline-flex;align-items:center;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d);background:rgba(0,196,212,.09);border:1px solid rgba(0,196,212,.2);padding:4px 10px;border-radius:100px;margin-bottom:16px;width:fit-content}
+.blog-h{font-size:1.02rem;font-weight:800;letter-spacing:-.015em;color:var(--ink);line-height:1.35;margin-bottom:10px}
+.blog-p{font-size:.83rem;color:var(--slate);line-height:1.65;margin-bottom:20px;flex:1}
+.blog-read{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:800;color:var(--teal-d);transition:gap .2s,color .2s}
+.blog-card:hover .blog-read{color:var(--teal);gap:10px}
+.blog-read svg{transition:transform .2s}
+.blog-card:hover .blog-read svg{transform:translateX(3px)}
+
+/* ── EMPLOYER BANNER ── */
+.employer-banner{background:linear-gradient(135deg,var(--ink),var(--ink-mid));border-radius:20px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;overflow:hidden}
+.employer-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(0,196,212,.16) 0%,transparent 70%)}
+.employer-copy{position:relative;z-index:1;max-width:520px}
+.employer-tag{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.employer-h{font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:900;letter-spacing:-.02em;color:var(--white);line-height:1.2;margin-bottom:10px}
+.employer-p{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.7}
+.employer-cta{position:relative;z-index:1;flex-shrink:0}
+
 /* ── BRIDGE / NEXT STEP ── */
 .bridge{display:flex;align-items:center;justify-content:space-between;background:var(--ink);border-radius:16px;padding:30px 38px;gap:24px}
 .bridge-copy{display:flex;flex-direction:column;gap:5px}
@@ -193,6 +216,7 @@ footer{background:var(--ink);padding:56px 48px 26px}
   .aud-grid{grid-template-columns:1fr 1fr}
   .feature-grid{grid-template-columns:1fr 1fr}
   .foot-g{grid-template-columns:1fr 1fr}
+  .blog-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
   .nav{padding:12px 20px}
@@ -203,7 +227,9 @@ footer{background:var(--ink);padding:56px 48px 26px}
   .feature-strip{padding:48px 22px}
   .aud-grid{grid-template-columns:1fr}
   .feature-grid{grid-template-columns:1fr 1fr}
+  .blog-grid{grid-template-columns:1fr}
   .bridge{flex-direction:column;align-items:flex-start;gap:18px}
+  .employer-banner{flex-direction:column;align-items:flex-start;padding:32px 26px}
   .foot-g{grid-template-columns:1fr;gap:26px}
   .foot-btm{flex-direction:column;gap:10px;text-align:center}
 }
@@ -233,7 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span></span><span></span><span></span>
   </button>
   <div class="nav-right">
-    <a href="https://cal.com/christopher-castro-giz5ap/30min" target="_blank" rel="noopener" class="nav-phone">
+    <a href="https://calendar.app.google/bpAhv9YdZV2qYySA9" target="_blank" rel="noopener" class="nav-phone">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
       Schedule a Call
     </a>
@@ -246,7 +272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="/#how-it-works" onclick="closeMobileMenu()">How It Works</a>
   <a href="/#why-us" onclick="closeMobileMenu()">Why Us</a>
   <a href="/#faq" onclick="closeMobileMenu()">FAQ</a>
-  <a href="tel:+15614219421" style="color:var(--teal);border-bottom:none">(561) 421-9421</a>
+  <a href="tel:+19542280869" style="color:var(--teal);border-bottom:none">(954) 228-0869</a>
   <a href="/#quote-form" class="mm-cta" onclick="closeMobileMenu()">Get Free Quote</a>
 </div>
 
@@ -365,6 +391,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- BLOG / GUIDES BY SITUATION -->
+<section class="sec" id="guides" style="background:var(--fog);padding-top:76px;padding-bottom:76px">
+  <div class="sec-in">
+    <div class="sec-hd c">
+      <div class="lbl">Guides By Situation</div>
+      <h2 class="h2 r">Not everyone's situation<br>looks like the next person's.</h2>
+      <p class="desc r d1">A closer look at $0 doctor visit PPO plans for the people who need coverage that doesn't assume a 9-to-5 in one zip code.</p>
+    </div>
+    <div class="blog-grid">
+      <a href="/health-insurance-travel-nurses.html" class="blog-card r d1">
+        <div class="blog-tag">Travel Nurses</div>
+        <div class="blog-h">Coverage That Travels as Often as You Do</div>
+        <p class="blog-p">Why agency benefits fall short between contracts — and how a private PPO plan closes the gap.</p>
+        <span class="blog-read">Read the Guide<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="/health-insurance-truck-drivers.html" class="blog-card r d2">
+        <div class="blog-tag">Truckers &amp; Owner-Operators</div>
+        <div class="blog-h">Health Coverage Built for Life on the Road</div>
+        <p class="blog-p">Why local networks break down hundreds of miles from home — and what to look for instead.</p>
+        <span class="blog-read">Read the Guide<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="/health-insurance-freelancers-gig-workers.html" class="blog-card r d3">
+        <div class="blog-tag">Freelancers &amp; Gig Workers</div>
+        <div class="blog-h">Health Insurance That Doesn't Need an Employer</div>
+        <p class="blog-p">Comparing private PPO plans against ACA marketplace subsidies when your income isn't a fixed number.</p>
+        <span class="blog-read">Read the Guide<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a href="/health-insurance-remote-workers.html" class="blog-card r d4">
+        <div class="blog-tag">Remote Workers</div>
+        <div class="blog-h">Coverage That Moves Wherever You Work</div>
+        <p class="blog-p">What happens when your employer's network is built around an office you never visit.</p>
+        <span class="blog-read">Read the Guide<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYER BANNER (separate path, away from individual audience cards) -->
+<section class="sec" style="background:var(--white);padding-top:0">
+  <div class="sec-in">
+    <div class="employer-banner r">
+      <div class="employer-copy">
+        <div class="employer-tag"><span class="kicker-dot" style="width:5px;height:5px;background:var(--teal);border-radius:50%;display:inline-block"></span>Hiring? Growing a Team?</div>
+        <div class="employer-h">Looking for health insurance for your employees?</div>
+        <p class="employer-p">That's a different process. See exactly how it works — one simple path from business info to everyone enrolled.</p>
+      </div>
+      <div class="employer-cta">
+        <a href="/for-employers.html" class="btn-primary">
+          See How It Works For Employers
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHY IT'S FREE STRIP -->
 <div class="feature-strip">
   <div class="sec-in">
@@ -437,10 +519,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <div class="fcol-h">Get In Touch</div>
       <ul class="flinks">
-        <li><a href="tel:+15614219421">(561) 421-9421</a></li>
+        <li><a href="tel:+19542280869">(954) 228-0869</a></li>
         <li><a href="mailto:christophercastrohealth@gmail.com">christophercastrohealth@gmail.com</a></li>
         <li><a href="/#quote-form">Free Quote</a></li>
-        <li><a href="https://cal.com/christopher-castro-giz5ap/30min" target="_blank" rel="noopener">Book Consultation</a></li>
+        <li><a href="https://calendar.app.google/bpAhv9YdZV2qYySA9" target="_blank" rel="noopener">Book Consultation</a></li>
       </ul>
     </div>
   </div>
