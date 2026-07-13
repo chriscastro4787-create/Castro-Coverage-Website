@@ -40,8 +40,9 @@ const transporter = nodemailer.createTransport({
   rateLimit: 3,
 });
 
-function notificationHtml({ first_name, last_name, phone, email, coverage_type }) {
+function notificationHtml({ first_name, last_name, phone, email, coverage_type, sms_consent }) {
   [first_name, last_name, phone, email, coverage_type] = [first_name, last_name, phone, email, coverage_type].map(esc);
+  const smsConsentLabel = sms_consent ? 'Yes — opted in' : 'No — did not opt in';
   return `
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <style>
@@ -69,6 +70,7 @@ function notificationHtml({ first_name, last_name, phone, email, coverage_type }
       <tr><td>Email</td><td><a href="mailto:${email}">${email}</a></td></tr>
       <tr><td>Phone</td><td><a href="tel:${phone}">${phone}</a></td></tr>
       <tr><td>Coverage Type</td><td>${coverage_type}</td></tr>
+      <tr><td>SMS Consent</td><td>${smsConsentLabel}</td></tr>
     </table>
     <a href="https://calendar.app.google/bpAhv9YdZV2qYySA9" class="btn">Schedule a Call with This Lead →</a>
   </div>
@@ -157,9 +159,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true }); // silently discard
   }
 
-  const { first_name, last_name, phone, email, coverage_type } = req.body;
+  const { first_name, last_name, phone, email, coverage_type, sms_consent } = req.body;
 
-  // Presence check
+  // Presence check — sms_consent is optional and must never be required
   if (!first_name || !last_name || !email || !coverage_type) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
@@ -180,7 +182,7 @@ export default async function handler(req, res) {
         from: `"Castro Coverage Website" <${process.env.GMAIL_USER}>`,
         to: process.env.GMAIL_USER,
         subject: `New Quote Request — ${first_name} ${last_name}`,
-        html: notificationHtml({ first_name, last_name, phone, email, coverage_type }),
+        html: notificationHtml({ first_name, last_name, phone, email, coverage_type, sms_consent: !!sms_consent }),
       }),
       transporter.sendMail({
         from: `"Christopher Castro – Castro Coverage" <${process.env.GMAIL_USER}>`,
