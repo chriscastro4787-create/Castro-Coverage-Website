@@ -234,10 +234,17 @@ select option{background:var(--ink-mid);color:var(--white)}
 }
 .btn-form:hover{background:#1DDCEC;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,196,212,.4)}
 .form-disclaimer{font-size:.7rem;color:rgba(255,255,255,.28);text-align:center;margin-top:10px;line-height:1.5}
-.form-consent{display:flex;gap:9px;align-items:flex-start;margin:2px 0 14px}
-.form-consent input[type="checkbox"]{width:15px;height:15px;flex-shrink:0;margin-top:2px;accent-color:var(--teal);cursor:pointer}
-.form-consent label{display:block;font-size:.68rem;font-weight:400;text-transform:none;letter-spacing:0;color:rgba(255,255,255,.42);line-height:1.65;cursor:pointer;margin:0}
-.form-consent a{color:var(--teal);text-decoration:underline}
+.form-consent{display:flex;gap:8px;align-items:flex-start;margin:2px 0 12px}
+.form-consent input[type="checkbox"]{
+  -webkit-appearance:checkbox;appearance:auto;
+  width:14px;height:14px;min-width:14px;padding:0;border:none;background:none;
+  flex-shrink:0;margin-top:3px;accent-color:var(--teal);cursor:pointer;
+}
+.form-consent .consent-copy{flex:1;min-width:0}
+.form-consent label{display:block;font-size:.72rem;font-weight:600;text-transform:none;letter-spacing:0;color:rgba(255,255,255,.62);line-height:1.5;cursor:pointer;margin:0 0 4px}
+.form-consent label span{color:rgba(255,255,255,.32);font-weight:400}
+.consent-text{max-height:64px;overflow-y:auto;font-size:.6rem;line-height:1.55;color:rgba(255,255,255,.34);padding:7px 9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:7px}
+.consent-text a{color:var(--teal);text-decoration:underline}
 
 /* ── MARQUEE ── */
 .mq-wrap{background:var(--ink-mid);border-top:1px solid rgba(0,196,212,.1);border-bottom:1px solid rgba(0,196,212,.1);padding:13px 0;overflow:hidden}
@@ -582,8 +589,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
           <div class="form-consent">
-            <input type="checkbox" id="sms-consent" name="sms_consent">
-            <label for="sms-consent">I agree, by submitting my cell phone number and checking this box, to receive automated SMS/MMS messages with more information from CASTRO COVERAGE LLC, such as follow-up responses to inquiries regarding business offerings and marketing texts. The number of messages sent each day may vary from 1 to 5. Reply STOP to cancel, Reply HELP for contact information. Your mobile information will not be sold or shared with third parties for promotional or marketing purposes. Message and data rates may apply. Terms of Service: <a href="/terms.html" target="_blank" rel="noopener">https://castrocoverage.com/terms.html</a> | Privacy Policy: <a href="/privacy.html" target="_blank" rel="noopener">https://castrocoverage.com/privacy.html</a></label>
+            <input type="checkbox" id="sms-consent" name="sms_consent" aria-describedby="sms-consent-text">
+            <div class="consent-copy">
+              <label for="sms-consent">I agree to receive SMS/MMS messages from Castro Coverage <span>(optional)</span></label>
+              <div class="consent-text" id="sms-consent-text">I agree, by submitting my cell phone number and checking this box, to receive automated SMS/MMS messages with more information from CASTRO COVERAGE LLC, such as follow-up responses to inquiries regarding business offerings and marketing texts. The number of messages sent each day may vary from 1 to 5. Reply STOP to cancel, Reply HELP for contact information. Your mobile information will not be sold or shared with third parties for promotional or marketing purposes. Message and data rates may apply. Terms of Service: <a href="/terms.html" target="_blank" rel="noopener">https://castrocoverage.com/terms.html</a> | Privacy Policy: <a href="/privacy.html" target="_blank" rel="noopener">https://castrocoverage.com/privacy.html</a></div>
+            </div>
           </div>
           <div style="display:none" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
           <div id="form-error" style="display:none;font-size:.78rem;color:#F87171;margin-bottom:10px;text-align:center"></div>
