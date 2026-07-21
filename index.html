@@ -54,8 +54,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "taxID": "NPN: 22109263",
   "priceRange": "$0",
   "areaServed": [
-    "Florida", "Texas", "Georgia", "North Carolina", "Tennessee",
-    "Colorado", "United States"
+    "Arkansas", "Colorado", "Florida", "Iowa", "Illinois", "Indiana",
+    "Kansas", "Kentucky", "Maryland", "Michigan", "Missouri", "North Carolina",
+    "Nebraska", "Nevada", "Ohio", "Oklahoma", "South Dakota", "Tennessee",
+    "Texas", "Utah", "Virginia", "United States"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -316,6 +318,15 @@ select option{background:var(--ink-mid);color:var(--white)}
 .lic-stat{border-left:2px solid rgba(0,196,212,.38);padding-left:16px;text-align:left;min-width:160px}
 .lic-stat-v{font-size:1.9rem;font-weight:900;color:var(--teal);letter-spacing:-.03em;line-height:1;margin-bottom:5px}
 .lic-stat-l{font-size:.75rem;color:rgba(255,255,255,.42);line-height:1.45}
+.lic-states{max-width:820px;margin:36px auto 0;position:relative;z-index:1;text-align:center}
+.lic-states-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:14px}
+.lic-state-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.lic-state-chip{font-size:.74rem;font-weight:700;color:rgba(255,255,255,.6);background:rgba(255,255,255,.05);border:1px solid rgba(0,196,212,.2);padding:5px 12px;border-radius:100px}
+a.lic-state-chip{text-decoration:none;transition:all .2s;cursor:pointer}
+a.lic-state-chip:hover{color:var(--ink);background:var(--teal);border-color:var(--teal)}
+.lic-states-note{font-size:.78rem;color:rgba(255,255,255,.34);margin-top:16px;line-height:1.6}
+.lic-states-note a{color:var(--teal);text-decoration:none;font-weight:600}
+.lic-states-note a:hover{text-decoration:underline}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;position:relative}
 .steps::before{content:'';position:absolute;top:25px;left:calc(16.7% + 25px);right:calc(16.7% + 25px);height:1px;background:linear-gradient(90deg,var(--teal),var(--teal-d))}
 .step{text-align:center;position:relative;z-index:1}
@@ -502,7 +513,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="/who-we-help.html">Who We Help</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="/learning-center.html">Learning Center</a></li>
+      <li><a href="/verified-advisor.html">Verified Advisor</a></li>
       <li><a href="#why-us">Why Us</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -521,7 +533,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="mobile-menu" id="mobile-menu">
   <a href="#services" onclick="closeMobileMenu()">Services</a>
   <a href="/who-we-help.html" onclick="closeMobileMenu()">Who We Help</a>
-  <a href="#how-it-works" onclick="closeMobileMenu()">How It Works</a>
+  <a href="/learning-center.html" onclick="closeMobileMenu()">Learning Center</a>
+  <a href="/verified-advisor.html" onclick="closeMobileMenu()">Verified Advisor</a>
   <a href="#why-us" onclick="closeMobileMenu()">Why Us</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="tel:+19542280869" class="mm-phone">(954) 228-0869</a>
@@ -753,6 +766,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="lic-stat-l">Carrier plans<br>compared</div>
       </div>
     </div>
+    <div class="lic-states r">
+      <div class="lic-states-label">Actively Serving Clients In</div>
+      <div class="lic-state-chips">
+        <span class="lic-state-chip">Arkansas</span>
+        <span class="lic-state-chip">Colorado</span>
+        <a href="/health-insurance-florida.html" class="lic-state-chip">Florida</a>
+        <span class="lic-state-chip">Illinois</span>
+        <a href="/health-insurance-indiana.html" class="lic-state-chip">Indiana</a>
+        <span class="lic-state-chip">Iowa</span>
+        <span class="lic-state-chip">Kansas</span>
+        <span class="lic-state-chip">Kentucky</span>
+        <a href="/health-insurance-maryland.html" class="lic-state-chip">Maryland</a>
+        <span class="lic-state-chip">Michigan</span>
+        <span class="lic-state-chip">Missouri</span>
+        <span class="lic-state-chip">Nebraska</span>
+        <span class="lic-state-chip">Nevada</span>
+        <a href="/health-insurance-north-carolina.html" class="lic-state-chip">North Carolina</a>
+        <a href="/health-insurance-ohio.html" class="lic-state-chip">Ohio</a>
+        <span class="lic-state-chip">Oklahoma</span>
+        <span class="lic-state-chip">South Dakota</span>
+        <a href="/health-insurance-tennessee.html" class="lic-state-chip">Tennessee</a>
+        <a href="/health-insurance-texas.html" class="lic-state-chip">Texas</a>
+        <span class="lic-state-chip">Utah</span>
+        <a href="/health-insurance-virginia.html" class="lic-state-chip">Virginia</a>
+      </div>
+      <p class="lic-states-note">Actively growing outreach across 31+ states nationwide. <a href="/verified-advisor.html">View license &amp; verification details →</a></p>
+    </div>
 </section>
 
 <!-- SUCCESS STORY -->
@@ -942,6 +982,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul class="flinks">
         <li><a href="#why-us">About Us</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="/learning-center.html">Learning Center</a></li>
+        <li><a href="/verified-advisor.html">Verified Advisor</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#testimonials">Reviews</a></li>
       </ul>
